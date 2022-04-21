@@ -3,7 +3,7 @@ const errors = require("@feathersjs/errors");
 module.exports = () => {
   return async (context) => {
     const { result, app } = context;
-    const { user, accessToken } = result;
+    const { user, accessToken, authentication } = result;
     // delete result.authentication;
 
     const sequelize = app.get("sequelizeClient");
@@ -32,6 +32,7 @@ module.exports = () => {
         guru: guruData,
       }),
       accessToken,
+      authentication,
     };
 
     //  if (!context.result.user.isVerified) {
