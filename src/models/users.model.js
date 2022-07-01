@@ -55,6 +55,15 @@ module.exports = function (app) {
   users.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
+
+    // users.hasOne(models.siswa, {
+    //   foreignKey: "id_siswa",
+    //   as: "user_siswa",
+    // });
+    users.belongsTo(models.siswa, {
+      foreignKey: "id_user",
+      as: "user_siswa",
+    });
   };
 
   return users;
