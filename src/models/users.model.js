@@ -14,13 +14,6 @@ module.exports = function (app) {
         allowNull: false,
         primaryKey: true,
       },
-      // nik: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
-      // name: {
-      //   type: DataTypes.STRING,
-      // },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -35,12 +28,6 @@ module.exports = function (app) {
         allowNull: false,
         // unique: true,
       },
-      // umur: {
-      //   type: DataTypes.STRING,
-      // },
-      // kelas: {
-      //   type: DataTypes.STRING,
-      // },
     },
     {
       hooks: {
@@ -55,22 +42,20 @@ module.exports = function (app) {
   users.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
-
     // users.hasOne(models.siswa, {
     //   foreignKey: "id_siswa",
     //   as: "user_siswa",
     // });
     // siswa
-    users.belongsTo(models.siswa, {
-      foreignKey: "id_user",
-      as: "user_siswa",
-    });
-
+    // users.belongsTo(models.siswa, {
+    //   foreignKey: "id_user",
+    //   as: "user_siswa",
+    // });
     // guru
-    users.belongsTo(models.guru, {
-      foreignKey: "id_user",
-      as: "user_guru",
-    });
+    // users.belongsTo(models.guru, {
+    //   foreignKey: "id_user",
+    //   as: "user_guru",
+    // });
   };
 
   return users;
