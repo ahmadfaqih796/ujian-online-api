@@ -11,12 +11,14 @@ module.exports = () => {
 
     const { id_user, role } = user;
     const siswaData = await siswa.findOne({
+      attributes: { exclude: ["id_siswa", "createdAt", "updatedAt"] },
       where: {
         id_siswa: id_user,
       },
     });
 
     const guruData = await guru.findOne({
+      attributes: { exclude: ["id_guru", "createdAt", "updatedAt"] },
       where: {
         id_guru: id_user,
       },
