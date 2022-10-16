@@ -7,7 +7,7 @@ module.exports = () => {
     const { users, siswa } = sequelize.models;
     const { id_user, name } = result;
     if (result.role === "siswa") {
-      await siswa.create({
+      return await siswa.create({
         id_siswa: id_user,
         nama_siswa: name,
       });
