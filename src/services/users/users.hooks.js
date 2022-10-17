@@ -3,6 +3,7 @@ const { authenticate } = require("@feathersjs/authentication").hooks;
 const { hashPassword, protect } =
   require("@feathersjs/authentication-local").hooks;
 const createResponse = require("../../hooks/users/create-response");
+const createUser = require("../../hooks/users/create-user");
 
 module.exports = {
   before: {
@@ -23,7 +24,7 @@ module.exports = {
     ],
     find: [],
     get: [],
-    create: [],
+    create: [createUser()],
     update: [],
     patch: [],
     remove: [],

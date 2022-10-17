@@ -16,47 +16,36 @@ module.exports = function (app) {
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       nama_siswa: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       nis: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       kelamin: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       agama: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       tempat_lahir: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       tanggal_lahir: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       alamat: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       no_telepon: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       photo: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
     },
     {
