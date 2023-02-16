@@ -6,7 +6,12 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const users = sequelizeClient.define('users', {
-  
+    id_user: {
+      type: DataTypes.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
