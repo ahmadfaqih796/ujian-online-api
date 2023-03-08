@@ -8,7 +8,7 @@ module.exports = function (app) {
   const users = sequelizeClient.define(
     "users",
     {
-      id: {
+      id_user: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
