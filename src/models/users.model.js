@@ -28,7 +28,13 @@ module.exports = function (app) {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      nama: {
+      name: {
+        type: DataTypes.STRING,
+      },
+      umur: {
+        type: DataTypes.STRING,
+      },
+      kelas: {
         type: DataTypes.STRING,
       },
     },
