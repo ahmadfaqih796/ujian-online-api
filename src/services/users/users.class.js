@@ -3,11 +3,7 @@ const { Service } = require("feathers-sequelize");
 
 exports.Users = class Users extends Service {
   async create(data, params) {
-    // This is the information we want from the user signup data
     const { email, password, name, nik } = await data;
-    // Use the existing avatar image or return the Gravatar for the email
-    //  const avatar = data.avatar || getGravatar(email);
-    // The complete user
     if (email === "") {
       throw new errors.BadRequest("email tidak boleh kosong");
     }
@@ -20,8 +16,10 @@ exports.Users = class Users extends Service {
     const userData = {
       email,
       name,
+      password,
       nik,
     };
+    super.create(userData, params);
     return {
       message: "Berhasil membuat akun",
       user: userData,
