@@ -2,21 +2,7 @@ const errors = require("@feathersjs/errors");
 
 module.exports = () => {
   return async (context) => {
-    console.log("dataaaa", context);
     const { data, app } = context;
-    // const user = await app.service("users").Model.findOne({
-    //   ...(data.email && {
-    //     where: {
-    //       email: data.email,
-    //     },
-    //   }),
-    //   ...(data.nik && {
-    //     where: {
-    //       nik: data.nik,
-    //     },
-    //   }),
-    // });
-    // throw new errors.BadRequest(user);
 
     const isEmailValid = await app.service("users").Model.findOne({
       where: {
@@ -29,10 +15,10 @@ module.exports = () => {
       },
     });
     if (isEmailValid) {
-      throw new errors.Conflict("email tidak boleh sama");
+      throw new errors.Conflict("Email ini sudah digunakan");
     }
     if (isNIKValid) {
-      throw new errors.Conflict("Nik tidak boleh sama");
+      throw new errors.Conflict("Nik ini sudah digunakan");
     }
 
     return context;
