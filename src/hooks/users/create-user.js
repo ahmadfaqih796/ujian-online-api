@@ -5,18 +5,17 @@ module.exports = () => {
     const { app, result } = context;
     const sequelize = app.get("sequelizeClient");
     const { guru, siswa } = sequelize.models;
-    const { id_user, name } = result;
-    console.log("rrrrrr", result);
+    const { id_user, name, role } = result;
     // create guru
-    if (result.role === "guru") {
-      return await guru.create({
+    if (role === "guru") {
+      await guru.create({
         id_guru: id_user,
         nama_guru: name,
       });
     }
     // create siswa
-    if (result.role === "siswa") {
-      return await siswa.create({
+    if (role === "siswa") {
+      await siswa.create({
         id_siswa: id_user,
         nama_siswa: name,
       });
