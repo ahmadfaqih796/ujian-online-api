@@ -8,7 +8,7 @@ module.exports = function (app) {
   const guru = sequelizeClient.define(
     "guru",
     {
-      id_siswa: {
+      id_guru: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
