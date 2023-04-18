@@ -14,12 +14,12 @@ module.exports = function (app) {
         allowNull: false,
         primaryKey: true,
       },
-      username: {
-        type: DataTypes.STRING,
-      },
-      password: {
-        type: DataTypes.STRING,
-      },
+      // username: {
+      //   type: DataTypes.STRING,
+      // },
+      // password: {
+      //   type: DataTypes.STRING,
+      // },
       nama_siswa: {
         type: DataTypes.STRING,
       },
