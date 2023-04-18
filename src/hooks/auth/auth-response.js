@@ -17,7 +17,7 @@ module.exports = () => {
 
     const guruData = await guru.findOne({
       where: {
-        id_siswa: result.user.id_user,
+        id_guru: result.user.id_user,
       },
     });
 
