@@ -17,7 +17,7 @@ module.exports = function (app) {
       nama_guru: {
         type: DataTypes.STRING,
       },
-      nik: {
+      nip: {
         type: DataTypes.STRING,
       },
       kelamin: {
