@@ -22,7 +22,7 @@ module.exports = () => {
     });
 
     context.result = {
-      message: "anda berhasil",
+      message: "anda berhasil login",
       user,
       ...(result.user.role === "siswa" && {
         siswa: siswaData,
