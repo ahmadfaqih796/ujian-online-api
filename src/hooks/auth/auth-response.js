@@ -4,7 +4,7 @@ module.exports = () => {
   return async (context) => {
     const { result, app } = context;
     const { user, accessToken } = result;
-    delete result.authentication;
+    // delete result.authentication;
 
     const sequelize = app.get("sequelizeClient");
     const { siswa, guru } = sequelize.models;
