@@ -9,25 +9,26 @@ module.exports = () => {
     const sequelize = app.get("sequelizeClient");
     const { siswa, guru } = sequelize.models;
 
+    const { id_user, role } = user;
     const siswaData = await siswa.findOne({
       where: {
-        id_siswa: result.user.id_user,
+        id_siswa: id_user,
       },
     });
 
     const guruData = await guru.findOne({
       where: {
-        id_guru: result.user.id_user,
+        id_guru: id_user,
       },
     });
 
     context.result = {
       message: "anda berhasil login",
       user,
-      ...(result.user.role === "siswa" && {
+      ...(role === "siswa" && {
         siswa: siswaData,
       }),
-      ...(result.user.role === "guru" && {
+      ...(role === "guru" && {
         guru: guruData,
       }),
       accessToken,
