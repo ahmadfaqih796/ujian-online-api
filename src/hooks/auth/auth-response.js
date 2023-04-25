@@ -32,7 +32,7 @@ module.exports = () => {
         guru: guruData,
       }),
       accessToken,
-      // authentication,
+      authentication,
     };
 
     //  if (!context.result.user.isVerified) {
