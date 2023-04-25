@@ -31,7 +31,7 @@ module.exports = () => {
       ...(role === "guru" && {
         guru: guruData,
       }),
-      accessToken,
+      // accessToken,
       authentication,
     };
 
