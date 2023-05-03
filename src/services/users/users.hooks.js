@@ -4,12 +4,13 @@ const { hashPassword, protect } =
   require("@feathersjs/authentication-local").hooks;
 const createUser = require("../../hooks/users/create-user");
 const includeUserSiswa = require("../../hooks/users/include-user-siswa");
+const includeUserGuru = require("../../hooks/users/include-user-guru");
 
 module.exports = {
   before: {
     all: [],
-    find: [authenticate("jwt"), includeUserSiswa()],
-    get: [authenticate("jwt"), includeUserSiswa()],
+    find: [authenticate("jwt"), includeUserSiswa(), includeUserGuru()],
+    get: [authenticate("jwt"), includeUserSiswa(), includeUserGuru()],
     create: [hashPassword("password")],
     update: [hashPassword("password"), authenticate("jwt")],
     patch: [hashPassword("password"), authenticate("jwt")],
