@@ -8,12 +8,15 @@ module.exports = () => {
     // result
     const { id_user, role } = result;
     // data
-    const { agama, photo, name } = data;
+    const { agama, photo, name, nik, nip } = data;
     // create guru
     if (role === "guru") {
       await guru.create({
         id_guru: id_user,
         nama_guru: name,
+        photo: photo,
+        agama: agama,
+        nip: nip,
       });
     }
     // create siswa
@@ -23,6 +26,7 @@ module.exports = () => {
         nama_siswa: name,
         photo: photo,
         agama: agama,
+        nik: nik,
       });
     }
     return context;
