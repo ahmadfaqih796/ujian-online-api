@@ -18,16 +18,12 @@ exports.Users = class Users {
 
     for (let i = 0; i < data.length; i++) {
       const element = {
-        // nik: data[i].nik ?? "-",
+        no: i + 1,
         name: data[i].name ?? "-",
+        nip: data[i]?.user_guru?.nip ?? "-",
         role: data[i]?.role ?? "-",
         email: data[i]?.email ?? "-",
         photo: data[i]?.user_guru?.photo ?? "-",
-        // position: data[i]?.job_position?.name ?? "-",
-        // level: data[i]?.job_level?.name ?? "-",
-        // employee_type: data[i]?.employee_type?.name ?? "-",
-        // location: data[i]?.location_point?.name ?? "-",
-        // join_date: data[i].created_at ?? "-",
       };
       newData.push(element);
     }
@@ -37,26 +33,8 @@ exports.Users = class Users {
 
   async find(params) {
     const sequelize = this.app.get("sequelizeClient");
-    const {
-      users,
-      guru,
-      job_level,
-      job_position,
-      employee_type,
-      location_point,
-    } = sequelize.models;
-    const {
-      nik,
-      company_id,
-      departement,
-      position,
-      level,
-      join_date,
-      employee,
-      location,
-      name,
-      role,
-    } = params.query;
+    const { users, guru } = sequelize.models;
+    const { name, role } = params.query;
 
     // if (!company_id)
     //   throw new errors.BadRequest("Params company_id must be fullfield");
@@ -64,9 +42,6 @@ exports.Users = class Users {
     const getUsers = await users.findAll({
       attributes: ["role", "name", "email", "createdAt"],
       where: {
-        // ...(nik && {
-        //   nik: nik,
-        // }),
         ...(name && {
           name: {
             $like: `%${name}%`,
@@ -76,27 +51,13 @@ exports.Users = class Users {
           role: role,
         }),
       },
+      order: [["name", "ASC"]],
       include: [
         {
           model: guru,
           as: "user_guru",
-          attributes: ["nama_guru", "photo"],
-          ...(departement && {
-            where: {
-              id: departement,
-            },
-          }),
+          attributes: ["nama_guru", "nip", "photo"],
         },
-        // {
-        //   model: job_level,
-        //   as: "job_level",
-        //   attributes: ["name"],
-        //   ...(level && {
-        //     where: {
-        //       id: level,
-        //     },
-        //   }),
-        // },
       ],
       nested: true,
       // raw: true,
@@ -106,14 +67,19 @@ exports.Users = class Users {
 
     const columns = [
       {
-        header: "Nik",
-        key: "nik",
+        header: "No",
+        key: "no",
         width: 15,
       },
       {
         header: "name",
         key: "name",
         width: 30,
+      },
+      {
+        header: "NIP",
+        key: "nip",
+        width: 15,
       },
       {
         header: "role",
@@ -125,39 +91,11 @@ exports.Users = class Users {
         key: "photo",
         width: 30,
       },
-      // {
-      //   header: "Departemen",
-      //   key: "departement",
-      //   width: 20,
-      // },
-      // {
-      //   header: "Posisi",
-      //   key: "position",
-      //   width: 20,
-      // },
-      // {
-      //   header: "Tipe Karyawan",
-      //   key: "employee_type",
-      // },
-      // {
-      //   header: "Lokasi Kerja",
-      //   key: "location",
-      // },
-      // {
-      //   header: "Tanggal Register",
-      //   key: "join_date",
-      //   width: 15,
-      // },
     ];
 
     const workbook = new ExelJs.Workbook();
     const worksheet = workbook.addWorksheet("users");
     worksheet.columns = columns;
-
-    // worksheet.getColumn("location").width = result.map((item) => {
-    //   const maxLength = Math.max(item?.location?.length) ?? 15;
-    //   return maxLength;
-    // })[0];
 
     worksheet.addRows(result);
 
