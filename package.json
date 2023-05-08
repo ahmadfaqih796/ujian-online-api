@@ -49,6 +49,7 @@
     "cors": "^2.8.5",
     "dauria": "^2.0.0",
     "dotenv": "^16.0.3",
+    "exceljs": "^4.3.0",
     "feathers-blob": "^2.6.0",
     "feathers-sequelize": "^6.4.0",
     "fs-blob-store": "^6.0.0",
