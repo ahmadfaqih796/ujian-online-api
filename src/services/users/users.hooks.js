@@ -9,8 +9,8 @@ const includeUserGuru = require("../../hooks/users/include-user-guru");
 module.exports = {
   before: {
     all: [],
-    find: [authenticate("jwt")],
-    get: [authenticate("jwt")],
+    find: [authenticate("jwt"), includeUserSiswa(), includeUserGuru()],
+    get: [authenticate("jwt"), includeUserSiswa(), includeUserGuru()],
     create: [hashPassword("password")],
     update: [hashPassword("password"), authenticate("jwt")],
     patch: [hashPassword("password"), authenticate("jwt")],

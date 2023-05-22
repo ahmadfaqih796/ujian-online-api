@@ -47,15 +47,15 @@ module.exports = function (app) {
     //   as: "user_siswa",
     // });
     // siswa
-    // users.belongsTo(models.siswa, {
-    //   foreignKey: "id_user",
-    //   as: "user_siswa",
-    // });
+    users.belongsTo(models.siswa, {
+      foreignKey: "id_user",
+      as: "user_siswa",
+    });
     // guru
-    // users.belongsTo(models.guru, {
-    //   foreignKey: "id_user",
-    //   as: "user_guru",
-    // });
+    users.belongsTo(models.guru, {
+      foreignKey: "id_user",
+      as: "user_guru",
+    });
   };
 
   return users;
