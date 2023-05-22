@@ -6,6 +6,7 @@ const pelajaran = require('./pelajaran/pelajaran.service.js');
 const guru = require('./guru/guru.service.js');
 const upload = require('./upload/upload.service.js');
 const exportUsers = require('./export/users/users.service.js');
+const admin = require('./admin/admin.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -16,4 +17,5 @@ module.exports = function (app) {
   app.configure(guru);
   app.configure(upload);
   app.configure(exportUsers);
+  app.configure(admin);
 };
