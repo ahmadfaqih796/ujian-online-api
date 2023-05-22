@@ -7,9 +7,24 @@ module.exports = () => {
     // delete result.authentication;
 
     const sequelize = app.get("sequelizeClient");
-    const { siswa, guru } = sequelize.models;
+    const { admin, guru, siswa } = sequelize.models;
 
     const { id_user, role } = user;
+    // admin
+    const adminData = await admin.findOne({
+      attributes: { exclude: ["id_admin", "createdAt", "updatedAt"] },
+      where: {
+        id_admin: id_user,
+      },
+    });
+    // guru
+    const guruData = await guru.findOne({
+      attributes: { exclude: ["id_guru", "createdAt", "updatedAt"] },
+      where: {
+        id_guru: id_user,
+      },
+    });
+    // siswa
     const siswaData = await siswa.findOne({
       attributes: { exclude: ["id_siswa", "createdAt", "updatedAt"] },
       where: {
@@ -17,21 +32,17 @@ module.exports = () => {
       },
     });
 
-    const guruData = await guru.findOne({
-      attributes: { exclude: ["id_guru", "createdAt", "updatedAt"] },
-      where: {
-        id_guru: id_user,
-      },
-    });
-
     context.result = {
       message: "anda berhasil login",
       user,
-      ...(role === "siswa" && {
-        siswa: siswaData,
+      ...(role === "admin" && {
+        admin: adminData,
       }),
       ...(role === "guru" && {
         guru: guruData,
+      }),
+      ...(role === "siswa" && {
+        siswa: siswaData,
       }),
       // accessToken,
       authentication,
