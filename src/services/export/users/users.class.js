@@ -59,7 +59,7 @@ exports.Users = class Users {
           attributes: ["nama_guru", "nip", "photo"],
         },
       ],
-      nested: true,
+      // nested: true,
       // raw: true,
     });
 
@@ -69,7 +69,7 @@ exports.Users = class Users {
       {
         header: "No",
         key: "no",
-        width: 15,
+        width: 5,
       },
       {
         header: "name",
@@ -84,7 +84,7 @@ exports.Users = class Users {
       {
         header: "role",
         key: "role",
-        width: 30,
+        width: 10,
       },
       {
         header: "photo",
@@ -94,6 +94,12 @@ exports.Users = class Users {
     ];
 
     const workbook = new ExelJs.Workbook();
+    workbook.creator = "AHMAD FAQIH ARIFIN";
+    workbook.title = "Laporan";
+    // workbook.lastModifiedBy = "Her";
+    workbook.created = new Date();
+    workbook.modified = new Date();
+    // workbook.lastPrinted = new Date(2016, 9, 27);
     const worksheet = workbook.addWorksheet("users");
     worksheet.columns = columns;
 
