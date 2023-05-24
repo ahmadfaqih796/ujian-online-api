@@ -113,7 +113,6 @@ exports.Users = class Users {
       const sequelize = this.app.get("sequelizeClient");
       const { users, guru } = sequelize.models;
       const { role } = data;
-      console.log("ssssss", data);
 
       const getUsers = await users.findAll({
         attributes: ["role", "email", "createdAt"],
