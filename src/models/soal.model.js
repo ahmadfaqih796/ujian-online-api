@@ -41,15 +41,12 @@ module.exports = function (app) {
       },
       pilihan_c: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       pilihan_d: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       pilihan_e: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       kunci: {
         type: DataTypes.STRING,
