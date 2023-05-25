@@ -13,72 +13,77 @@ exports.Soal = class Soal extends Service {
       },
       A: {
         prop: "pilihan_a",
-        type: Number,
+        type: String,
+        required: true,
+      },
+      B: {
+        prop: "pilihan_b",
+        type: String,
         required: true,
       },
       // Nested object example.
       // 'COURSE' here is not a real Excel file column name,
       // it can be any string — it's just for code readability.
-      B: {
-        // Nested object path: `row.course`
-        prop: "pilihan_b",
-        // Nested object schema:
-        type: {
-          "IS FREE": {
-            prop: "isFree",
-            type: Boolean,
-          },
-          "COURSE TITLE": {
-            prop: "title",
-            type: String,
-          },
-        },
-      },
-      CONTACT: {
-        prop: "contact",
-        required: true,
-        // A custom `type` can be defined.
-        // A `type` function only gets called for non-empty cells.
-        type: (value) => {
-          const number = parsePhoneNumber(value);
-          if (!number) {
-            throw new Error("invalid");
-          }
-          return number;
-        },
-      },
-      STATUS: {
-        prop: "status",
-        type: String,
-        oneOf: ["SCHEDULED", "STARTED", "FINISHED"],
-      },
+      // B: {
+      //   // Nested object path: `row.course`
+      //   prop: "pilihan_b",
+      //   // Nested object schema:
+      //   type: {
+      //     "IS FREE": {
+      //       prop: "isFree",
+      //       type: Boolean,
+      //     },
+      //     "COURSE TITLE": {
+      //       prop: "title",
+      //       type: String,
+      //     },
+      //   },
+      // },
+      // CONTACT: {
+      //   prop: "contact",
+      //   required: true,
+      //   // A custom `type` can be defined.
+      //   // A `type` function only gets called for non-empty cells.
+      //   type: (value) => {
+      //     const number = parsePhoneNumber(value);
+      //     if (!number) {
+      //       throw new Error("invalid");
+      //     }
+      //     return number;
+      //   },
+      // },
+      // STATUS: {
+      //   prop: "status",
+      //   type: String,
+      //   oneOf: ["SCHEDULED", "STARTED", "FINISHED"],
+      // },
     };
 
-    readXlsxFile(file, { schema }).then(({ rows, errors }) => {
-      // `errors` list items have shape: `{ row, column, error, reason?, value?, type? }`.
-      errors.length === 0;
-
-      rows ===
-        [
-          {
-            date: new Date(2018, 2, 24),
-            numberOfStudents: 10,
-            course: {
-              isFree: true,
-              title: "Chemistry",
-            },
-            contact: "+11234567890",
-            status: "SCHEDULED",
-          },
-        ];
-    });
     try {
       // File path.
-      readXlsxFile("/path/to/file").then((rows) => {
-        // `rows` is an array of rows
-        // each row being an array of cells.
+      // readXlsxFile("/path/to/file").then((rows) => {
+      //   // `rows` is an array of rows
+      //   // each row being an array of cells.
+      // });
+      readXlsxFile(data, { schema }).then(({ rows, errors }) => {
+        // `errors` list items have shape: `{ row, column, error, reason?, value?, type? }`.
+        errors.length === 0;
+
+        rows ===
+          [
+            {
+              date: new Date(2018, 2, 24),
+              numberOfStudents: 10,
+              course: {
+                isFree: true,
+                title: "Chemistry",
+              },
+              contact: "+11234567890",
+              status: "SCHEDULED",
+            },
+          ];
       });
-      throw new errors.BadRequest("hahahah");
+      // throw new errors.BadRequest("hahahah");
       console.log("masuk pak eko", data);
       return data;
     } catch (error) {
