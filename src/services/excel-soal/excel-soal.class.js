@@ -18,7 +18,6 @@ exports.ExcelSoal = class ExcelSoal {
   }
 
   async create(data, params) {
-    console.log("data", data);
     if (Array.isArray(data)) {
       return Promise.all(data.map((current) => this.create(current, params)));
     }
