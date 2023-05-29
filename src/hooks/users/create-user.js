@@ -4,11 +4,18 @@ module.exports = () => {
   return async (context) => {
     const { app, result, data } = context;
     const sequelize = app.get("sequelizeClient");
-    const { guru, siswa } = sequelize.models;
-    // result
+    const { admin, guru, siswa } = sequelize.models;
     const { id_user, role } = result;
-    // data
     const { agama, photo, name, nik, nip } = data;
+    // create admin
+    if (role === "admin") {
+      await admin.create({
+        id_admin: id_user,
+        nama_admin: name,
+        photo: photo,
+        is_active: 1,
+      });
+    }
     // create guru
     if (role === "guru") {
       await guru.create({
