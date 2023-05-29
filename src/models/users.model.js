@@ -48,7 +48,7 @@ module.exports = function (app) {
     // });
     // admin
     users.belongsTo(models.admin, {
-      foreignKey: "id_admin",
+      foreignKey: "id_user",
       as: "user_admin",
     });
     // guru
