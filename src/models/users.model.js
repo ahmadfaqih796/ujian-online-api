@@ -46,15 +46,20 @@ module.exports = function (app) {
     //   foreignKey: "id_siswa",
     //   as: "user_siswa",
     // });
-    // siswa
-    users.belongsTo(models.siswa, {
-      foreignKey: "id_user",
-      as: "user_siswa",
+    // admin
+    users.belongsTo(models.admin, {
+      foreignKey: "id_admin",
+      as: "user_admin",
     });
     // guru
     users.belongsTo(models.guru, {
       foreignKey: "id_user",
       as: "user_guru",
+    });
+    // siswa
+    users.belongsTo(models.siswa, {
+      foreignKey: "id_user",
+      as: "user_siswa",
     });
   };
 
