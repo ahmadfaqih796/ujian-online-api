@@ -7,7 +7,7 @@ module.exports = () => {
     const { admin, guru, siswa } = sequelize.models;
     const { id_user, role } = result;
     const { agama, photo, name, nik, nip } = data;
-    // create admin
+
     if (role === "admin") {
       await admin.create({
         id_admin: id_user,
@@ -16,7 +16,7 @@ module.exports = () => {
         is_active: 1,
       });
     }
-    // create guru
+
     if (role === "guru") {
       await guru.create({
         id_guru: id_user,
@@ -26,7 +26,7 @@ module.exports = () => {
         nip: nip,
       });
     }
-    // create siswa
+
     if (role === "siswa") {
       await siswa.create({
         id_siswa: id_user,
