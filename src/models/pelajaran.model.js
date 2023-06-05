@@ -32,6 +32,10 @@ module.exports = function (app) {
   pelajaran.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
+    pelajaran.hasMany(models.soal, {
+      as: "question",
+      foreignKey: "id_pelajaran",
+    });
   };
 
   return pelajaran;

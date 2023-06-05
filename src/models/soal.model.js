@@ -66,6 +66,7 @@ module.exports = function (app) {
   soal.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
+    soal.belongsTo(models.pelajaran, { foreignKey: "id_pelajaran" });
   };
 
   return soal;
