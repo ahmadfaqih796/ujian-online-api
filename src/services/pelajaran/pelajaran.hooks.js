@@ -5,10 +5,10 @@ const handleChildren = () => {
     const { app, data, result } = context;
     const sequelize = app.get("sequelizeClient");
     const { soal } = sequelize.models;
-    if (data && data.children) {
-      const sidebarItems = data.children.map((item) => ({
+    if (data && data.question) {
+      const sidebarItems = data.question.map((item) => ({
         ...item,
-        parent_id: result.id,
+        id_pelajaran: result.id,
       }));
       await soal.bulkCreate(sidebarItems);
     }
@@ -37,14 +37,14 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: [],
+    remove: [handleDeleteChildren()],
   },
 
   after: {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [handleChildren()],
     update: [],
     patch: [],
     remove: [],
