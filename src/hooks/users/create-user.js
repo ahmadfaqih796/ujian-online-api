@@ -12,7 +12,7 @@ module.exports = () => {
       await admin.create({
         id_admin: id_user,
         nama_admin: name,
-        photo: photo,
+        // photo: photo,
         is_active: 1,
       });
     }
