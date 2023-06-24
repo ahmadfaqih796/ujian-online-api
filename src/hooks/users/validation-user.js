@@ -12,7 +12,7 @@ module.exports = () => {
       },
     });
     if (isEmailValid) {
-      throw new errors.NotAuthenticated("Email ini sudah digunakan");
+      throw new errors.Conflict("Email ini sudah digunakan");
     }
     return context;
   };
