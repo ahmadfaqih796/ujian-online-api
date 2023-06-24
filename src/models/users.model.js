@@ -17,7 +17,7 @@ module.exports = function (app) {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        // unique: true,
+        unique: true,
       },
       password: {
         type: DataTypes.STRING,
@@ -26,7 +26,6 @@ module.exports = function (app) {
       role: {
         type: DataTypes.STRING,
         allowNull: false,
-        // unique: true,
       },
     },
     {
@@ -42,23 +41,16 @@ module.exports = function (app) {
   users.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
-    // users.hasOne(models.siswa, {
-    //   foreignKey: "id_siswa",
-    //   as: "user_siswa",
-    // });
-    // admin
-    users.belongsTo(models.admin, {
-      foreignKey: "id_user",
+    users.hasOne(models.admin, {
+      foreignKey: "id_admin",
       as: "user_admin",
     });
-    // guru
-    users.belongsTo(models.guru, {
-      foreignKey: "id_user",
+    users.hasOne(models.guru, {
+      foreignKey: "id_guru",
       as: "user_guru",
     });
-    // siswa
-    users.belongsTo(models.siswa, {
-      foreignKey: "id_user",
+    users.hasOne(models.siswa, {
+      foreignKey: "id_siswa",
       as: "user_siswa",
     });
   };
