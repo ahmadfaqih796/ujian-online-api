@@ -55,6 +55,10 @@ module.exports = function (app) {
   guru.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
+    guru.belongsTo(models.users, {
+      foreignKey: "id_guru",
+      as: "user_data",
+    });
   };
 
   return guru;
