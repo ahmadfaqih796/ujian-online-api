@@ -9,7 +9,7 @@ module.exports = function (options = {}) {
     const { users } = sequelize.models;
     const include = [
       {
-        attributes: { include: ["email", "role"] },
+        attributes: ["email", "role"],
         model: users,
         as: "user_data",
       },
