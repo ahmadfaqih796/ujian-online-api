@@ -8,6 +8,7 @@ const upload = require('./upload/upload.service.js');
 const exportUsers = require('./export/users/users.service.js');
 const admin = require('./admin/admin.service.js');
 const excelSoal = require('./excel-soal/excel-soal.service.js');
+const dashboard = require('./dashboard/dashboard.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -20,4 +21,5 @@ module.exports = function (app) {
   app.configure(exportUsers);
   app.configure(admin);
   app.configure(excelSoal);
+  app.configure(dashboard);
 };
