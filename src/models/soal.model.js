@@ -14,7 +14,6 @@ module.exports = function (app) {
         allowNull: false,
         primaryKey: true,
       },
-
       kode_pelajaran: {
         type: DataTypes.STRING,
         allowNull: false,
