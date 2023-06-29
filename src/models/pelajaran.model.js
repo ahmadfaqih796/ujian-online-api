@@ -34,7 +34,7 @@ module.exports = function (app) {
     // See https://sequelize.org/master/manual/assocs.html
     pelajaran.hasMany(models.soal, {
       as: "question",
-      foreignKey: "id_pelajaran",
+      foreignKey: "kode_pelajaran",
     });
   };
 
