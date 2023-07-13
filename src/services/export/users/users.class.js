@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 const errors = require("@feathersjs/errors");
-const ExelJs = require("exceljs");
+const ExcelJs = require("exceljs");
 
 exports.Users = class Users {
   constructor(options) {
@@ -81,7 +81,7 @@ exports.Users = class Users {
         },
       ];
 
-      const workbook = new ExelJs.Workbook();
+      const workbook = new ExcelJs.Workbook();
       workbook.creator = "AHMAD FAQIH ARIFIN";
       workbook.title = "Laporan";
       // workbook.lastModifiedBy = "Faqih";
