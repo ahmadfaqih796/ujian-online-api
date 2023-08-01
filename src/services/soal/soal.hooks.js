@@ -1,10 +1,11 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
+const { disablePagination } = require("feathers-hooks-common");
 
 module.exports = {
   before: {
     all: [],
-    find: [],
-    get: [],
+    find: [disablePagination()],
+    get: [disablePagination()],
     create: [],
     update: [],
     patch: [],

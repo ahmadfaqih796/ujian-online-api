@@ -51,6 +51,7 @@
     "dotenv": "^16.0.3",
     "exceljs": "^4.3.0",
     "feathers-blob": "^2.6.0",
+    "feathers-hooks-common": "^8.0.0",
     "feathers-sequelize": "^6.4.0",
     "fs-blob-store": "^6.0.0",
     "helmet": "^5.1.1",
