@@ -21,7 +21,7 @@ const handleDeleteMultiple = () => {
       }
       context.result = { message: "Delete Successful", id_soal: idSoal };
     } catch (error) {
-      console.log("errrrrr", error);
+      console.log("error", error);
       throw error;
     }
 
@@ -31,7 +31,7 @@ const handleDeleteMultiple = () => {
 
 module.exports = {
   before: {
-    all: [authenticate("jwt")],
+    all: [],
     find: [disablePagination()],
     get: [disablePagination()],
     create: [],
