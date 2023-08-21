@@ -48,7 +48,13 @@ module.exports = function (app) {
         type: DataTypes.STRING,
       },
       kunci: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(
+          "pilihan_a",
+          "pilihan_b",
+          "pilihan_c",
+          "pilihan_d",
+          "pilihan_e"
+        ),
         allowNull: false,
       },
     },
