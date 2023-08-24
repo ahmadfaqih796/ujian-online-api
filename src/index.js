@@ -17,9 +17,9 @@ io.on("connection", (socket) => {
   console.log("Client connected");
   socket.on("client-message", (data) => {
     console.log("Received message from client:", data);
-    messages.push({ text: data.text, id_user: "sasassas" });
+    messages.push(data);
     // Kirim pesan ke semua client yang terhubung
-    io.emit("server-message", { text: data.text, id_user: data.id_user });
+    io.emit("server-message", data);
   });
 
   socket.on("disconnect", () => {
