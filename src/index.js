@@ -12,18 +12,41 @@ const io = new Server(server, {
   path: "/messages",
 });
 
-const messages = []; // Simpan pesan di sini
+const onlineUsers = [];
+const targetIdUser = [];
+const messages = [];
 io.on("connection", (socket) => {
   console.log("Client connected");
+
+  socket.on("user-connected", (data, id) => {
+    targetIdUser.push(id);
+    console.log("first", targetIdUser);
+    targetIdUser.forEach((targetId) => {
+      const targetObj = data.find((obj) => obj.id === targetId);
+      if (targetObj) {
+        targetObj.status = true;
+      }
+    });
+    io.emit("update-user-status", data);
+
+    socket.on("before-disconnect", (session) => {
+      const targetObjDisconnect = data.find((obj) => obj.id === session.id);
+      if (targetObjDisconnect) {
+        targetObjDisconnect.status = false;
+      }
+      console.log("Client disconnected with ID:", targetObjDisconnect);
+      io.emit("update-user-status", data);
+    });
+  });
+
   socket.on("client-message", (data) => {
     console.log("Received message from client:", data);
     messages.push(data);
-    // Kirim pesan ke semua client yang terhubung
     io.emit("server-message", data);
   });
 
   socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    // console.log("Client disconnected");
   });
 });
 
