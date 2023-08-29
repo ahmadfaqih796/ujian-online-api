@@ -19,7 +19,9 @@ io.on("connection", (socket) => {
   console.log("Client connected");
 
   socket.on("user-connected", (data, id) => {
-    targetIdUser.push(id);
+    if (!targetIdUser.includes(id)) {
+      targetIdUser.push(id);
+    }
     console.log("first", targetIdUser);
     targetIdUser.forEach((targetId) => {
       const targetObj = data.find((obj) => obj.id === targetId);
