@@ -14,13 +14,21 @@ module.exports = function (app) {
         allowNull: false,
         primaryKey: true,
       },
+      id_user: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
       text: {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      id_user: {
-        type: DataTypes.UUID,
-        allowNull: false,
+      file_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      file_url: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {
