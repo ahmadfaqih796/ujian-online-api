@@ -30,6 +30,10 @@ module.exports = function (app) {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      file_type: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       hooks: {
