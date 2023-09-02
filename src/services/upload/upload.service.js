@@ -5,7 +5,15 @@ const fs = require("fs-blob-store");
 const blobService = require("feathers-blob");
 const blobStorage = fs("./public/uploads");
 
-const whitelist = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
+const whitelist = [
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+  "image/webp",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/pdf",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+];
 
 const multipartMiddleware = multer({
   // limits: {
@@ -13,7 +21,7 @@ const multipartMiddleware = multer({
   // },
   fileFilter: (req, file, cb) => {
     if (!whitelist.includes(file.mimetype)) {
-      return cb(new Error("file is not allowed"));
+      return cb(new Error("File tidak diizinkan"));
     }
 
     cb(null, true);
