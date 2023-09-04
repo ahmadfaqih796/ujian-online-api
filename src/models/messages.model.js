@@ -14,13 +14,27 @@ module.exports = function (app) {
         allowNull: false,
         primaryKey: true,
       },
-      id_user: {
+      id_sender: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
+      },
+      id_receiver: {
+        type: DataTypes.UUID,
+        allowNull: true,
       },
       text: {
         type: DataTypes.TEXT,
         allowNull: true,
+      },
+      is_read: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+      },
+      is_deleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
       },
       file_name: {
         type: DataTypes.STRING,
@@ -49,8 +63,12 @@ module.exports = function (app) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
     messages.belongsTo(models.users, {
-      foreignKey: "id_user",
+      foreignKey: "id_sender",
       as: "user_data",
+    });
+    messages.belongsTo(models.users, {
+      foreignKey: "id_receiver",
+      as: "receiver_data",
     });
   };
 
