@@ -48,6 +48,10 @@ module.exports = function (app) {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      grup_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       hooks: {
