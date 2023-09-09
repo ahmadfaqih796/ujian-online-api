@@ -13,17 +13,34 @@ const io = new Server(server, {
 });
 
 const onlineUsers = [];
-const targetIdUser = [];
 const messages = [];
 io.on("connection", (socket) => {
   console.log("Client connected");
 
-  socket.on("user-connected", (data, id) => {
-    if (!targetIdUser.includes(id)) {
-      targetIdUser.push(id);
+  socket.on("user-active", (data) => {
+    if (!onlineUsers.includes(data.id)) {
+      onlineUsers.push(data.id);
     }
-    console.log("first", targetIdUser);
-    targetIdUser.forEach((targetId) => {
+    io.emit("update-online", onlineUsers);
+    console.log("yang aktiff", onlineUsers);
+    socket.on("before-disconnect", (session) => {
+      const targetId = session.id;
+      const targetIndex = onlineUsers.indexOf(targetId);
+      console.log("lok", targetIndex);
+      if (targetIndex !== -1) {
+        onlineUsers.splice(targetIndex, 1);
+      }
+      io.emit("update-online", onlineUsers);
+      console.log("Client disconnected with ID:", onlineUsers);
+    });
+  });
+
+  socket.on("user-connected", (data, id) => {
+    if (!onlineUsers.includes(id)) {
+      onlineUsers.push(id);
+    }
+    console.log("first", onlineUsers);
+    onlineUsers.forEach((targetId) => {
       const targetObj = data.find((obj) => obj.id === targetId);
       if (targetObj) {
         targetObj.status = true;
