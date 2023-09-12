@@ -9,14 +9,16 @@ const io = new Server(server, {
   cors: {
     origin: "*",
   },
-  path: "/messages",
+  // path: "/messages",
 });
 
 const onlineUsers = [];
 const messages = [];
+const deleteData = [];
 io.on("connection", (socket) => {
   console.log("Client connected");
 
+  // ini yang baru
   socket.on("user-active", (data) => {
     if (!onlineUsers.includes(data.id)) {
       onlineUsers.push(data.id);
@@ -35,6 +37,7 @@ io.on("connection", (socket) => {
     });
   });
 
+  // ini yang lama
   socket.on("user-connected", (data, id) => {
     if (!onlineUsers.includes(id)) {
       onlineUsers.push(id);
@@ -56,6 +59,24 @@ io.on("connection", (socket) => {
       console.log("Client disconnected with ID:", targetObjDisconnect);
       io.emit("update-user-status", data);
     });
+  });
+  // ================================================================================
+  socket.on("delete-message", ({ id }) => {
+    if (!deleteData.includes(id)) {
+      deleteData.push(id);
+    }
+    console.log(deleteData);
+  });
+
+  socket.on("get-message", (data) => {
+    deleteData.forEach((targetId) => {
+      const targetObj = data.find((obj) => obj.id === targetId);
+      if (targetObj) {
+        targetObj.is_deleted = true;
+      }
+      console.log("halllo", targetObj);
+    });
+    io.emit("get-server-message", data);
   });
 
   socket.on("client-message", (data) => {
