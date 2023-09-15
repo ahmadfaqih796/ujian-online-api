@@ -7,7 +7,7 @@ const handleReadUser = () => {
     const { app, params } = context;
     const sequelize = app.get("sequelizeClient");
     const { messages } = sequelize.models;
-    const { id_sender } = params.query;
+    const { id_sender, id_receiver } = params.query;
     try {
       const res = await messages.update(
         {
@@ -16,6 +16,7 @@ const handleReadUser = () => {
         {
           where: {
             id_sender: id_sender,
+            id_receiver: id_receiver,
           },
         }
       );
