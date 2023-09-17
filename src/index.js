@@ -13,7 +13,7 @@ const io = new Server(server, {
 });
 
 const onlineUsers = [];
-const readUsers = [];
+// const readUsers = [];
 const messages = [];
 const deleteData = [];
 io.on("connection", (socket) => {
