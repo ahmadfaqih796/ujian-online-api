@@ -13,17 +13,17 @@ const io = new Server(server, {
 });
 
 const onlineUsers = [];
-// const readUsers = [];
+const readUsers = [];
 const messages = [];
 const deleteData = [];
 io.on("connection", (socket) => {
   console.log("Client connected");
 
-  // socket.on("message-read", (data) => {
-  //   console.log("data", data);
-  //   readUsers.push(data);
-  //   io.emit("server-message-read", data);
-  // });
+  socket.on("message-read", (data) => {
+    console.log("data", data);
+    readUsers.push(data);
+    io.emit("server-message-read", data);
+  });
 
   // ini yang baru
   socket.on("user-active", (data) => {
