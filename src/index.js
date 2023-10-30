@@ -17,7 +17,7 @@ const readUsers = [];
 const messages = [];
 const deleteData = [];
 io.on("connection", (socket) => {
-  console.log("Client connected");
+  // console.log("Client connected");
 
   socket.on("message-read", (data) => {
     console.log("data", data);
